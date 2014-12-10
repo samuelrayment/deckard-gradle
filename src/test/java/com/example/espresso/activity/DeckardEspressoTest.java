@@ -6,6 +6,7 @@ import com.example.R;
 import com.example.robolectric.DeckardActivity;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
+import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
@@ -18,6 +19,7 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<Deckar
        // This constructor was deprecated - but we want to support lower API levels.
        super("com.example.activity", DeckardActivity.class);
      }
+
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -28,5 +30,12 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<Deckar
     public void testCheckText() {
         onView(withId(R.id.text))
             .check(matches(withText("Hello Espresso!")));
-      }
+    }
+
+    public void testCheckButtonUpdatesLabel() {
+        onView(withId(R.id.button))
+            .perform(click());
+        onView(withId(R.id.text2))
+            .check(matches(withText("Button Clicked!")));
+    }
 }
