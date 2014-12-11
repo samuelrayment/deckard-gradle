@@ -2,12 +2,14 @@ package com.example.robolectric.main;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.DeckardApplication;
 import com.example.R;
+
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -61,7 +63,11 @@ public class MainActivity extends Activity implements IMainView {
 
     private void setupActivityDaggerModule() {
         DeckardApplication application = ((DeckardApplication) getApplication());
-        mObjectGraph = application.getApplicationGraph().plus(new MainModule(this));
+        mObjectGraph = application.getApplicationGraph().plus(getModules().toArray());
         mObjectGraph.inject(this);
+    }
+
+    protected List<Object> getModules() {
+        return Arrays.<Object>asList(new MainModule(this));
     }
 }
