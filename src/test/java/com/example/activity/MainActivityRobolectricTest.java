@@ -1,7 +1,7 @@
 package com.example.activity;
 
 import android.app.Activity;
-import com.example.robolectric.MainActivity;
+import com.example.robolectric.main.MainActivity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
