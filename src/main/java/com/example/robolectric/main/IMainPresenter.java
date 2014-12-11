@@ -1,7 +1,14 @@
 package com.example.robolectric.main;
 
+import com.example.robolectric.utils.IPresenter;
+
 /**
- * Created by sam on 11/12/14.
+ * Interface for the MainPresenter
  */
-public interface IMainPresenter {
+public interface IMainPresenter extends IPresenter {
+
+    public void onAttachView(IMainView mainView);
+    public void onDetachView();
+
+    public void buttonClicked();
 }

@@ -29,19 +29,34 @@ public class MainActivity extends Activity implements IMainView {
 
         setupActivityDaggerModule();
         setContentView(R.layout.deckard);
-        Log.e("TEST", "" + mMainPresenter);
         ButterKnife.inject(this);
+        mMainPresenter.onAttachView(this);
+        if (savedInstanceState != null) {
+            mMainPresenter.onRestoreInstanceState(savedInstanceState);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mMainPresenter.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mMainPresenter.onDetachView();
         mObjectGraph = null;
+    }
+
+    @Override
+    public void updateTitle(String title) {
+        mTextView.setText(title);
     }
 
     @OnClick(R.id.button)
     public void buttonClicked(Button button) {
-        mTextView.setText("Button Clicked!");
+        mMainPresenter.buttonClicked();
     }
 
     private void setupActivityDaggerModule() {
