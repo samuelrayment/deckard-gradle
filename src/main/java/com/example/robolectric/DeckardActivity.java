@@ -12,7 +12,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class DeckardActivity extends Activity {
-    @InjectView(R.id.text2)
+    @InjectView(R.id.text)
     TextView mTextView;
 
     @Override

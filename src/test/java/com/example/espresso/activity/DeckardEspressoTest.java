@@ -35,7 +35,7 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<Deckar
     public void testCheckButtonUpdatesLabel() {
         onView(withId(R.id.button))
             .perform(click());
-        onView(withId(R.id.text2))
+        onView(withId(R.id.text))
             .check(matches(withText("Button Clicked!")));
     }
 }
