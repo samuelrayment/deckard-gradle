@@ -3,7 +3,7 @@ package com.example.espresso.activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import com.example.R;
-import com.example.robolectric.DeckardActivity;
+import com.example.robolectric.MainActivity;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
@@ -12,12 +12,12 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
 
 @LargeTest
-public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<DeckardActivity> {
+public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     @SuppressWarnings("deprecation")
      public DeckardEspressoTest() {
        // This constructor was deprecated - but we want to support lower API levels.
-       super("com.example.activity", DeckardActivity.class);
+       super("com.example.activity", MainActivity.class);
      }
 
     @Override

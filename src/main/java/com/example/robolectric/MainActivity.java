@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class DeckardActivity extends Activity {
+public class MainActivity extends Activity {
     @InjectView(R.id.text)
     TextView mTextView;
 
