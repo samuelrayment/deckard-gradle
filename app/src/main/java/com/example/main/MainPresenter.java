@@ -6,17 +6,15 @@ import android.os.Bundle;
 import com.example.utils.IPresenter;
 
 /**
- * Created by sam on 11/12/14.
+ * Presenter for the MainView.
  */
 public class MainPresenter implements IMainPresenter, IPresenter {
-    private Context mContext;
     private IMainView mMainView;
     private String mTitle = "Hello Espresso!";
 
     private static String sTitleTag = "TITLE";
 
-    public MainPresenter(Context context) {
-        mContext = context;
+    public MainPresenter() {
     }
 
     @Override

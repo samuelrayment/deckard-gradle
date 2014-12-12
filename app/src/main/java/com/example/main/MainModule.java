@@ -25,6 +25,6 @@ public class MainModule {
 
     @Provides
     IMainPresenter produceMainPresenter() {
-        return new MainPresenter(mActivity.getApplicationContext());
+        return new MainPresenter();
     }
 }
