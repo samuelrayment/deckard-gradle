@@ -1,4 +1,4 @@
-package com.example.robolectric.main;
+package com.example.main;
 
 import android.app.Activity;
 import android.os.Bundle;

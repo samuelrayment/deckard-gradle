@@ -1,4 +1,4 @@
-package com.example.robolectric.utils;
+package com.example.utils;
 
 import android.os.Bundle;
 

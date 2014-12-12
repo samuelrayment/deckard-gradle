@@ -1,16 +1,13 @@
-package com.example.activity;
+package com.example.main;
 
 import android.app.Activity;
 
 import com.example.RobolectricGradleSubModuleTestRunner;
-import com.example.robolectric.main.MainActivity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
 import static org.junit.Assert.assertTrue;
 
 @Config(manifest = "../app/src/main/AndroidManifest.xml")

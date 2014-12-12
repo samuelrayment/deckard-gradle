@@ -1,4 +1,4 @@
-package com.example.robolectric.main;
+package com.example.main;
 
 /**
  * Created by sam on 11/12/14.

@@ -1,9 +1,9 @@
-package com.example.espresso.activity;
+package com.example.espresso.main;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import com.example.R;
-import com.example.robolectric.main.MainActivity;
+import com.example.main.MainActivity;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;

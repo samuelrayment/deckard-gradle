@@ -1,6 +1,6 @@
-package com.example.robolectric.main;
+package com.example.main;
 
-import com.example.robolectric.utils.IPresenter;
+import com.example.utils.IPresenter;
 
 /**
  * Interface for the MainPresenter

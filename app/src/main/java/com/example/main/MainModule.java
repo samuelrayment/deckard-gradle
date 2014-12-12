@@ -1,4 +1,4 @@
-package com.example.robolectric.main;
+package com.example.main;
 
 import com.example.DaggerModule;
 

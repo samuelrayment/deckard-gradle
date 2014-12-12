@@ -1,9 +1,9 @@
-package com.example.robolectric.main;
+package com.example.main;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import com.example.robolectric.utils.IPresenter;
+import com.example.utils.IPresenter;
 
 /**
  * Created by sam on 11/12/14.
