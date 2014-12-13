@@ -42,8 +42,8 @@ dependencies {
         exclude group: 'com.google.android', module: 'support-v4'
     }
 
-    testCompile('com.squareup:fest-android:1.0.8') {
-        exclude module: 'support-v4'
+    testCompile ('com.squareup.assertj:assertj-android:1.0.0') {
+        exclude module: 'support-annotations'
     }
 
     //add all of the jars and output from our 'first' variant to the test classpath

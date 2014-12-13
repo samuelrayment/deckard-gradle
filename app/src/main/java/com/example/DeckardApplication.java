@@ -11,7 +11,7 @@ import java.util.List;
 import dagger.ObjectGraph;
 
 public class DeckardApplication extends Application {
-    private ObjectGraph mApplicationGraph;
+    protected ObjectGraph mApplicationGraph;
 
     @Override
     public void onCreate() {
