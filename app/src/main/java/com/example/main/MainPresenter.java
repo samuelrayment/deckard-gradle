@@ -4,21 +4,28 @@ import android.os.Bundle;
 
 import com.example.utils.IPresenter;
 
+import javax.inject.Inject;
+
+import dagger.ObjectGraph;
+
 /**
  * Presenter for the MainView.
  */
 public class MainPresenter implements IMainPresenter, IPresenter {
-    private IMainView mMainView;
-    private String mTitle = "Hello Espresso!";
+    @Inject
+    IMainModel mMainModel;
+    IMainView mMainView;
+    String mTitle = "Hello Espresso!";
 
-    private static String sTitleTag = "TITLE";
+    static String sTitleTag = "TITLE";
 
     public MainPresenter() {
     }
 
     @Override
-    public void onAttachView(IMainView mainView) {
+    public void onAttachView(IMainView mainView, ObjectGraph objectGraph) {
         mMainView = mainView;
+        objectGraph.inject(this);
         mainView.updateTitle(mTitle);
     }
 
@@ -42,5 +49,15 @@ public class MainPresenter implements IMainPresenter, IPresenter {
     public void buttonClicked() {
         mTitle = "Button Clicked!";
         mMainView.updateTitle(mTitle);
+    }
+
+    @Override
+    public void incrementCounter() {
+        mMainModel.incrementCounter();
+    }
+
+    @Override
+    public void decrementCounter() {
+        mMainModel.decrementCounter();
     }
 }

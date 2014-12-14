@@ -2,6 +2,8 @@ package com.example.main;
 
 import com.example.DaggerModule;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -26,5 +28,12 @@ public class MainModule {
     @Provides
     IMainPresenter produceMainPresenter() {
         return new MainPresenter();
+    }
+
+    @Provides
+    // This is a singleton to provide persistence simulation
+    @Singleton
+    IMainModel produceMainModel() {
+        return new MainModel();
     }
 }

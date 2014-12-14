@@ -38,4 +38,33 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<MainAc
         onView(withId(R.id.text))
             .check(matches(withText("Button Clicked!")));
     }
+
+    public void testCounterStartsAt() {
+        onView(withId(R.id.counter_text))
+                .check(matches(withText("4")));
+    }
+
+    public void testIncrementingCounter() {
+        onView(withId(R.id.increment_button))
+                .perform(click());
+        onView(withId(R.id.increment_button))
+                .perform(click());
+        onView(withId(R.id.increment_button))
+                .perform(click());
+
+        onView(withId(R.id.counter_text))
+                .check(matches(withText("7")));
+    }
+
+    public void testDecrementingCounter() {
+        onView(withId(R.id.decrement_button))
+                .perform(click());
+        onView(withId(R.id.decrement_button))
+                .perform(click());
+        onView(withId(R.id.decrement_button))
+                .perform(click());
+
+        onView(withId(R.id.counter_text))
+                .check(matches(withText("1")));
+    }
 }

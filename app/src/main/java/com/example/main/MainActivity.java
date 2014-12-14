@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements IMainView {
         setContentView(R.layout.deckard);
         ButterKnife.inject(this);
         setupToolbar();
-        mMainPresenter.onAttachView(this);
+        mMainPresenter.onAttachView(this, mObjectGraph);
         if (savedInstanceState != null) {
             mMainPresenter.onRestoreInstanceState(savedInstanceState);
         }
