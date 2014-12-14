@@ -26,6 +26,7 @@ public class MainPresenter implements IMainPresenter, IPresenter {
     public void onAttachView(IMainView mainView, ObjectGraph objectGraph) {
         mMainView = mainView;
         objectGraph.inject(this);
+        mMainModel.setPresenter(this);
         mainView.updateTitle(mTitle);
     }
 
@@ -59,5 +60,10 @@ public class MainPresenter implements IMainPresenter, IPresenter {
     @Override
     public void decrementCounter() {
         mMainModel.decrementCounter();
+    }
+
+    @Override
+    public void updateCounter(int newCounter) {
+        mMainView.updateCounter(newCounter);
     }
 }

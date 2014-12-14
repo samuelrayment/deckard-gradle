@@ -5,4 +5,6 @@ package com.example.main;
  */
 public interface IMainView {
     public void updateTitle(String title);
+
+    public void updateCounter(int newCounterValue);
 }

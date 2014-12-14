@@ -33,6 +33,7 @@ public class TestDeckardApplication extends DeckardApplication implements TestLi
 
     @Override
     public void prepareTest(Object test) {
+        boolean shouldInject = false;
         mModules.clear();
         mModules.add(new DaggerModule(this));
         // Build dagger injection for these tests, adding a test
@@ -42,13 +43,16 @@ public class TestDeckardApplication extends DeckardApplication implements TestLi
                 if (annotation instanceof UseModule) {
                     Class module = ((UseModule) annotation).value();
                     mModules.add(module.newInstance());
+                    shouldInject = true;
                 }
             }
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
-        mApplicationGraph = ObjectGraph.create(mModules.toArray());
-        mApplicationGraph.inject(test);
+        if (shouldInject) {
+            mApplicationGraph = ObjectGraph.create(mModules.toArray());
+            mApplicationGraph.inject(test);
+        }
     }
 
     @Override

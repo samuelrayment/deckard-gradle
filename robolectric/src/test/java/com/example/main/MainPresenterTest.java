@@ -67,6 +67,17 @@ public class MainPresenterTest {
         verify(mMockMainModel).decrementCounter();
     }
 
+    @Test
+    public void testPresenterNotifiesViewWhenModelCounterUpdates() throws Exception {
+        int newCounterValue = 5;
+
+        mMainPresenterUnderTest.onAttachView(mMockMainView, mObjectGraph);
+        mMainPresenterUnderTest.updateCounter(newCounterValue);
+
+        verify(mMockMainView).updateCounter(newCounterValue);
+
+    }
+
     @Module(
             injects={
                     MainPresenter.class,

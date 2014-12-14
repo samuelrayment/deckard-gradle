@@ -26,6 +26,8 @@ public class MainActivity extends ActionBarActivity implements IMainView {
     TextView mTextView;
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;
+    @InjectView(R.id.counter_text)
+    TextView mCounterText;
     @Inject
     IMainPresenter mMainPresenter;
 
@@ -61,9 +63,24 @@ public class MainActivity extends ActionBarActivity implements IMainView {
         mTextView.setText(title);
     }
 
+    @Override
+    public void updateCounter(int newCounterValue) {
+        mCounterText.setText("" + newCounterValue);
+    }
+
     @OnClick(R.id.button)
     public void buttonClicked(Button button) {
         mMainPresenter.buttonClicked();
+    }
+
+    @OnClick(R.id.increment_button)
+    public void incrementClicked(Button button) {
+        mMainPresenter.incrementCounter();
+    }
+
+    @OnClick(R.id.decrement_button)
+    public void decrementClicked(Button button) {
+        mMainPresenter.decrementCounter();
     }
 
     private void setupActivityDaggerModule() {
