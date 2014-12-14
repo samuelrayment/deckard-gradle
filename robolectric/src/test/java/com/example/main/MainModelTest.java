@@ -14,30 +14,30 @@ import static org.mockito.Mockito.verify;
  */
 @RunWith(RobolectricGradleSubModuleTestRunner.class)
 public class MainModelTest {
-    IMainPresenter mMockPresenter;
+    IMainModel.CountListener mMockCountListener;
     IMainModel mModelUnderTest;
 
     @Before
     public void setup() {
-        mMockPresenter = mock(IMainPresenter.class);
+        mMockCountListener = mock(IMainModel.CountListener.class);
         mModelUnderTest = new MainModel();
-        mModelUnderTest.setPresenter(mMockPresenter);
+        mModelUnderTest.setCountListener(mMockCountListener);
     }
 
     @Test
     public void modelNotifiesPresenterOfCounterOnCreation() {
-        verify(mMockPresenter).updateCounter(4);
+        verify(mMockCountListener).onCountChanged(4);
     }
 
     @Test
     public void modelNotifiesPresenterOfCounterOnIncrement() {
         mModelUnderTest.incrementCounter();
-        verify(mMockPresenter).updateCounter(5);
+        verify(mMockCountListener).onCountChanged(5);
     }
 
     @Test
     public void modelNotifiesPresenterOfCounterOnDecrement() {
         mModelUnderTest.decrementCounter();
-        verify(mMockPresenter).updateCounter(3);
+        verify(mMockCountListener).onCountChanged(3);
     }
 }

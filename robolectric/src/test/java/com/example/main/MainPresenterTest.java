@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
  * Tests for the MainPresenter
  */
 public class MainPresenterTest {
-    IMainPresenter mMainPresenterUnderTest = new MainPresenter();
+    MainPresenter mMainPresenterUnderTest = new MainPresenter();
     IMainView mMockMainView;
     @Inject
     IMainModel mMockMainModel;
@@ -72,7 +72,7 @@ public class MainPresenterTest {
         int newCounterValue = 5;
 
         mMainPresenterUnderTest.onAttachView(mMockMainView, mObjectGraph);
-        mMainPresenterUnderTest.updateCounter(newCounterValue);
+        mMainPresenterUnderTest.onCountChanged(newCounterValue);
 
         verify(mMockMainView).updateCounter(newCounterValue);
 

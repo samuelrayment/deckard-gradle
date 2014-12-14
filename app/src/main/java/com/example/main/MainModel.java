@@ -5,23 +5,29 @@ package com.example.main;
  */
 public class MainModel implements IMainModel {
     int mCount = 4;
-    IMainPresenter mMainPresenter;
+    CountListener mCountListener = new NullCountListener();
 
-    @Override
-    public void setPresenter(IMainPresenter mainPresenter) {
-        mMainPresenter = mainPresenter;
-        mainPresenter.updateCounter(mCount);
+    public MainModel() {
     }
 
     @Override
     public void incrementCounter() {
         mCount++;
-        mMainPresenter.updateCounter(mCount);
+        mCountListener.onCountChanged(mCount);
     }
 
     @Override
     public void decrementCounter() {
         mCount--;
-        mMainPresenter.updateCounter(mCount);
+        mCountListener.onCountChanged(mCount);
+    }
+
+    @Override
+    public void setCountListener(CountListener countListener) {
+        if(countListener == null) {
+            countListener = new NullCountListener();
+        }
+        mCountListener = countListener;
+        mCountListener.onCountChanged(mCount);
     }
 }

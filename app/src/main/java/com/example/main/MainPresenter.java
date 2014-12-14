@@ -11,7 +11,7 @@ import dagger.ObjectGraph;
 /**
  * Presenter for the MainView.
  */
-public class MainPresenter implements IMainPresenter, IPresenter {
+public class MainPresenter implements IMainPresenter, IPresenter, IMainModel.CountListener {
     @Inject
     IMainModel mMainModel;
     IMainView mMainView;
@@ -26,7 +26,8 @@ public class MainPresenter implements IMainPresenter, IPresenter {
     public void onAttachView(IMainView mainView, ObjectGraph objectGraph) {
         mMainView = mainView;
         objectGraph.inject(this);
-        mMainModel.setPresenter(this);
+
+        mMainModel.setCountListener(this);
         mainView.updateTitle(mTitle);
     }
 
@@ -63,7 +64,7 @@ public class MainPresenter implements IMainPresenter, IPresenter {
     }
 
     @Override
-    public void updateCounter(int newCounter) {
-        mMainView.updateCounter(newCounter);
+    public void onCountChanged(int newCount) {
+        mMainView.updateCounter(newCount);
     }
 }
