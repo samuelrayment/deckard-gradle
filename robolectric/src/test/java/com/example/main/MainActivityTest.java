@@ -1,6 +1,5 @@
 package com.example.main;
 
-import android.app.Activity;
 import android.widget.Button;
 
 import com.example.R;
@@ -18,14 +17,12 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-@Config(manifest = "../app/src/main/AndroidManifest.xml")
 @RunWith(RobolectricGradleSubModuleTestRunner.class)
-@UseModule(MainActivityRobolectricTest.TestMainModule.class)
-public class MainActivityRobolectricTest {
+@UseModule(MainActivityTest.TestMainModule.class)
+public class MainActivityTest {
     @Inject
     IMainPresenter mMockPresenter;
 
@@ -41,7 +38,7 @@ public class MainActivityRobolectricTest {
     @Module(
             injects={
                     MainActivity.class,
-                    MainActivityRobolectricTest.class
+                    MainActivityTest.class
             },
             library = true,
             overrides = true

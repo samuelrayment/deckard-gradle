@@ -1,7 +1,9 @@
 package com.example.main;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,10 +20,12 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import dagger.ObjectGraph;
 
-public class MainActivity extends Activity implements IMainView {
+public class MainActivity extends ActionBarActivity implements IMainView {
     private ObjectGraph mObjectGraph;
     @InjectView(R.id.text)
     TextView mTextView;
+    @InjectView(R.id.toolbar)
+    Toolbar mToolbar;
     @Inject
     IMainPresenter mMainPresenter;
 
@@ -32,6 +36,7 @@ public class MainActivity extends Activity implements IMainView {
         setupActivityDaggerModule();
         setContentView(R.layout.deckard);
         ButterKnife.inject(this);
+        setupToolbar();
         mMainPresenter.onAttachView(this);
         if (savedInstanceState != null) {
             mMainPresenter.onRestoreInstanceState(savedInstanceState);
@@ -65,6 +70,12 @@ public class MainActivity extends Activity implements IMainView {
         DeckardApplication application = ((DeckardApplication) getApplication());
         mObjectGraph = application.getApplicationGraph().plus(getModules().toArray());
         mObjectGraph.inject(this);
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(mToolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setTitle(getString(R.string.app_title));
     }
 
     protected List<Object> getModules() {

@@ -7,7 +7,7 @@
     <uses-sdk android:minSdkVersion="18"
               android:targetSdkVersion="18"/>
 
-    <application android:name=".DeckardApplication">
+    <application android:name=".DeckardApplication" android:theme="@style/Theme.ParagonTheme">
 
         <activity android:name=".main.MainActivity">
             <intent-filter>

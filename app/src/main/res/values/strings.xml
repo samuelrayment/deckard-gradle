@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_text">Update</string>
+    <string name="starting_text">Hello Espresso!</string>
+    <string name="app_title">Paragon</string>
+</resources>

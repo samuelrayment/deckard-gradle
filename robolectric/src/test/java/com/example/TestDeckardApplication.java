@@ -35,6 +35,8 @@ public class TestDeckardApplication extends DeckardApplication implements TestLi
     public void prepareTest(Object test) {
         mModules.clear();
         mModules.add(new DaggerModule(this));
+        // Build dagger injection for these tests, adding a test
+        // module if it's been added using the UseModule annotation.
         try {
             for (Annotation annotation : test.getClass().getAnnotations()) {
                 if (annotation instanceof UseModule) {
