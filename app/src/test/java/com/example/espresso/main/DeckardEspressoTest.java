@@ -1,5 +1,6 @@
 package com.example.espresso.main;
 
+import android.support.test.espresso.action.ViewActions;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import com.example.R;
@@ -8,6 +9,11 @@ import com.example.main.MainActivity;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -32,8 +38,6 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<MainAc
         onView(withId(R.id.text))
             .check(matches(withText("Hello Espresso!")));
     }
-
-
 
     public void testCheckButtonUpdatesLabel() {
         onView(withId(R.id.button))
@@ -69,5 +73,18 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<MainAc
 
         onView(withId(R.id.counter_text))
                 .check(matches(withText("1")));
+    }
+
+    public void testCyclingThroughRecyclerView() {
+        for (int i=0; i<8; i++) {
+            // Add some more items so we can scroll
+            onView(withId(R.id.increment_button))
+                    .perform(click());
+        }
+
+        onView(withId(R.id.recycler_view))
+                .perform(scrollToPosition(8));
+        onView(withText("8"))
+                .check(matches(isDisplayed()));
     }
 }

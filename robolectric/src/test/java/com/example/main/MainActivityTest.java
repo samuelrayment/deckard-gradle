@@ -1,5 +1,6 @@
 package com.example.main;
 
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -43,6 +44,15 @@ public class MainActivityTest {
         activity.updateCounter(7);
 
         assertThat(textView.getText()).isEqualTo("7");
+    }
+
+    @Test
+    public void testUpdatingTheCounterUpdatesRecyclerViewItemCount() throws Exception {
+        MainActivity activity = Robolectric.buildActivity(MainActivity.class).create().get();
+        RecyclerView recyclerView = (RecyclerView)activity.findViewById(R.id.recycler_view);
+        activity.updateCounter(7);
+
+        assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(7);
     }
 
     @Test

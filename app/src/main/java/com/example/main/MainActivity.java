@@ -3,6 +3,8 @@ package com.example.main;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +30,9 @@ public class MainActivity extends ActionBarActivity implements IMainView {
     Toolbar mToolbar;
     @InjectView(R.id.counter_text)
     TextView mCounterText;
+    @InjectView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    private RecyclerAdapter mRecyclerAdapter;
     @Inject
     IMainPresenter mMainPresenter;
 
@@ -39,6 +44,7 @@ public class MainActivity extends ActionBarActivity implements IMainView {
         setContentView(R.layout.deckard);
         ButterKnife.inject(this);
         setupToolbar();
+        setupRecyclerView();
         mMainPresenter.onAttachView(this, mObjectGraph);
         if (savedInstanceState != null) {
             mMainPresenter.onRestoreInstanceState(savedInstanceState);
@@ -66,6 +72,7 @@ public class MainActivity extends ActionBarActivity implements IMainView {
     @Override
     public void updateCounter(int newCounterValue) {
         mCounterText.setText("" + newCounterValue);
+        mRecyclerAdapter.setNumberOfItems(newCounterValue);
     }
 
     @OnClick(R.id.button)
@@ -93,6 +100,14 @@ public class MainActivity extends ActionBarActivity implements IMainView {
         setSupportActionBar(mToolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle(getString(R.string.app_title));
+    }
+
+    private void setupRecyclerView() {
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerAdapter = new RecyclerAdapter(getApplicationContext(), 0);
+        mRecyclerView.setAdapter(mRecyclerAdapter);
     }
 
     protected List<Object> getModules() {

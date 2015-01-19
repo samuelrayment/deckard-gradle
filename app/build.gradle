@@ -62,8 +62,10 @@ dependencies {
     compile 'com.squareup.dagger:dagger:1.2.2'
     compile 'com.squareup.dagger:dagger-compiler:1.2.2'
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.0'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
     androidTestCompile 'com.google.guava:guava:14.0.1'
     androidTestCompile 'org.hamcrest:hamcrest-integration:1.1'
