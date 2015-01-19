@@ -16,4 +16,6 @@ public interface IMainPresenter extends IPresenter {
 
     public void incrementCounter();
     public void decrementCounter();
+
+    public void recyclerViewClicked(int index);
 }

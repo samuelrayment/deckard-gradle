@@ -1,15 +1,18 @@
 package com.example.main;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.R;
 import com.example.RobolectricGradleSubModuleTestRunner;
 import com.example.UseModule;
+import com.example.navigation.INavigator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.Any;
 import org.robolectric.Robolectric;
 
 import javax.inject.Inject;
@@ -21,6 +24,7 @@ import dagger.Provides;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.withSettings;
 
 @RunWith(RobolectricGradleSubModuleTestRunner.class)
 @UseModule(MainActivityTest.TestMainModule.class)
@@ -71,6 +75,18 @@ public class MainActivityTest {
         button.performClick();
 
         verify(mMockPresenter).decrementCounter();
+    }
+
+    @Test
+    public void testClickingRecyclerViewNotifiesThePresenter() throws Exception {
+        MainActivity activity = Robolectric.buildActivity(MainActivity.class).create().get();
+        activity.updateCounter(7);
+        RecyclerView recyclerView = (RecyclerView)activity.findViewById(R.id.recycler_view);
+        recyclerView.measure(0, 0);
+        recyclerView.layout(0, 0, 100, 10000);
+        recyclerView.getChildAt(0).performClick();
+
+        verify(mMockPresenter).recyclerViewClicked(0);
     }
 
     @Module(

@@ -1,6 +1,7 @@
 package com.example.main;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.utils.IPresenter;
 
@@ -61,6 +62,11 @@ public class MainPresenter implements IMainPresenter, IPresenter, IMainModel.Cou
     @Override
     public void decrementCounter() {
         mMainModel.decrementCounter();
+    }
+
+    @Override
+    public void recyclerViewClicked(int index) {
+        Log.e("TEST", "AT INDEX: " + index);
     }
 
     @Override

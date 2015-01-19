@@ -87,4 +87,15 @@ public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<MainAc
         onView(withText("8"))
                 .check(matches(isDisplayed()));
     }
+
+    public void testClickingRecyclerViewLaunchesSecondActivity() {
+        onView(withId(R.id.recycler_view))
+                .perform(scrollToPosition(0));
+        onView(withId(R.id.recycler_view))
+                .perform(actionOnItemAtPosition(0, click()));
+
+
+        onView(withText("Activity Launched With 0"))
+                .check(matches(isDisplayed()));
+    }
 }

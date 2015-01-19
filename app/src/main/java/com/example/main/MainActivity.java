@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class MainActivity extends ActionBarActivity implements IMainView {
         super.onCreate(savedInstanceState);
 
         setupActivityDaggerModule();
-        setContentView(R.layout.deckard);
+        setContentView(R.layout.main_activity);
         ButterKnife.inject(this);
         setupToolbar();
         setupRecyclerView();
@@ -102,11 +103,18 @@ public class MainActivity extends ActionBarActivity implements IMainView {
         actionbar.setTitle(getString(R.string.app_title));
     }
 
+    private RecyclerAdapter.RecyclerAdapterOnClickListener mClickListener = new RecyclerAdapter.RecyclerAdapterOnClickListener() {
+        @Override
+        public void onClick(int index) {
+            mMainPresenter.recyclerViewClicked(index);
+        }
+    };
+
     private void setupRecyclerView() {
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getApplicationContext());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerAdapter = new RecyclerAdapter(getApplicationContext(), 0);
+        mRecyclerAdapter = new RecyclerAdapter(getApplicationContext(), mClickListener);
         mRecyclerView.setAdapter(mRecyclerAdapter);
     }
 
