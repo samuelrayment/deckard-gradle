@@ -19,10 +19,4 @@ public class DaggerModule {
     public DaggerModule(DeckardApplication application) {
         mApplication = application;
     }
-
-    @Provides
-    @Singleton
-    public INavigator provideNavigator() {
-        return new Navigator();
-    }
 }

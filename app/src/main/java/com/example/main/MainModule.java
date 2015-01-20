@@ -1,6 +1,8 @@
 package com.example.main;
 
 import com.example.DaggerModule;
+import com.example.navigation.INavigator;
+import com.example.navigation.Navigator;
 
 import javax.inject.Singleton;
 
@@ -35,5 +37,11 @@ public class MainModule {
     @Singleton
     IMainModel produceMainModel() {
         return new MainModel();
+    }
+
+    @Provides
+    @Singleton
+    public INavigator provideNavigator() {
+        return new Navigator(mActivity);
     }
 }
