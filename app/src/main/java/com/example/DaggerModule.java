@@ -1,6 +1,12 @@
 package com.example;
 
+import com.example.navigation.INavigator;
+import com.example.navigation.Navigator;
+
+import javax.inject.Singleton;
+
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * Base Application dagger module for the app, provides application
@@ -12,5 +18,11 @@ public class DaggerModule {
 
     public DaggerModule(DeckardApplication application) {
         mApplication = application;
+    }
+
+    @Provides
+    @Singleton
+    public INavigator provideNavigator() {
+        return new Navigator();
     }
 }

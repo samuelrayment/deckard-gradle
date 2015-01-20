@@ -3,6 +3,7 @@ package com.example.main;
 import com.example.DaggerModule;
 import com.example.RobolectricGradleSubModuleTestRunner;
 import com.example.UseModule;
+import com.example.navigation.INavigator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,8 @@ public class MainPresenterTest {
     IMainView mMockMainView;
     @Inject
     IMainModel mMockMainModel;
+    @Inject
+    INavigator mMockNavigator;
     ObjectGraph mObjectGraph;
 
     @Before
@@ -78,6 +81,16 @@ public class MainPresenterTest {
 
     }
 
+    @Test
+    public void testPresenterNavigatesToSecondActivityOnRecyclerViewTouch() throws Exception {
+        final int itemIndex = 3;
+        mMainPresenterUnderTest.onAttachView(mMockMainView, mObjectGraph);
+
+        mMainPresenterUnderTest.recyclerViewClicked(itemIndex);
+
+        verify(mMockNavigator).navigateToDetail(itemIndex);
+    }
+
     @Module(
             injects={
                     MainPresenter.class,
@@ -89,6 +102,12 @@ public class MainPresenterTest {
         @Singleton
         IMainModel produceMainModel() {
             return mock(IMainModel.class);
+        }
+
+        @Provides
+        @Singleton
+        INavigator provideNavigator() {
+            return mock(INavigator.class);
         }
     }
 }

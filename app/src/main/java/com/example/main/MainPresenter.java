@@ -3,6 +3,7 @@ package com.example.main;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.navigation.INavigator;
 import com.example.utils.IPresenter;
 
 import javax.inject.Inject;
@@ -15,6 +16,8 @@ import dagger.ObjectGraph;
 public class MainPresenter implements IMainPresenter, IPresenter, IMainModel.CountListener {
     @Inject
     IMainModel mMainModel;
+    @Inject
+    INavigator mNavigator;
     IMainView mMainView;
     String mTitle = "Hello Espresso!";
 
@@ -66,7 +69,7 @@ public class MainPresenter implements IMainPresenter, IPresenter, IMainModel.Cou
 
     @Override
     public void recyclerViewClicked(int index) {
-        Log.e("TEST", "AT INDEX: " + index);
+        mNavigator.navigateToDetail(index);
     }
 
     @Override
